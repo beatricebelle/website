@@ -1,0 +1,221 @@
+/* Base Variables & Reset */
+:root {
+    --bg-color: #050505;
+    --text-color: #f0f0f0;
+    --accent-color: #5ab4c5;
+    --nav-hover: #ffffff;
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --overlay: rgba(5, 5, 5, 0.65); 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header & Navigation */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: rgba(5, 5, 5, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo-link {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    transition: color 0.3s ease, opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+}
+
+.logo.scrolled-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.logo:hover {
+    color: var(--accent-color);
+}
+
+nav {
+    margin-left: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #a0a0a0;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--nav-hover);
+    transform: translateY(-2px);
+}
+
+/* Scrolling Sections & Background Images */
+.page-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 5% 2rem 5%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Updated Background Image Paths */
+.section-home {
+    background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/blue_harness_front.jpg");
+}
+
+.section-about {
+    background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/yellow_shoe_side.jpg");
+}
+
+.section-portfolio {
+    background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/blue_shoe_side.jpg");
+}
+
+.section-contact{
+    background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/smart.jpg");
+}
+
+/* Hero Content for Home Section */
+.hero-content {
+    text-align: center;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: 8px;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: #cccccc;
+    text-transform: uppercase;
+}
+
+/* Content Boxes */
+.content-box {
+    background: rgba(10, 10, 10, 0.7);
+    padding: 3rem;
+    border-radius: 10px;
+    max-width: 1000px;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    color: #e0e0e0;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.portfolio-item {
+    border: 1px solid #444;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.portfolio-item:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 5%;
+    }
+    
+    .hero-title {
+        letter-spacing: 4px;
+    }
+    
+    .content-box {
+        padding: 1.5rem;
+    }
+    
+    .page-section {
+        background-attachment: scroll;
+    }
+}
