@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Smooth Scrolling for Navigation Links
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    // 1. Mobile Hamburger Menu Toggle
+    mobileMenu.addEventListener('click', () => {
+        mobileMenu.classList.toggle('toggle-active');
+        navMenu.classList.toggle('nav-active');
+    });
+
+    // 2. Smooth Scrolling for Navigation Links & Auto-close Mobile Menu
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -12,10 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     block: 'start'
                 });
             }
+
+            // Close the mobile menu when a link is clicked
+            if (navMenu.classList.contains('nav-active')) {
+                mobileMenu.classList.remove('toggle-active');
+                navMenu.classList.remove('nav-active');
+            }
         });
     });
 
-    // 2. Scroll Event for Top-Left Nav Logo Appearance
+    // 3. Scroll Event for Top-Left Nav Logo Appearance
     const navLogo = document.getElementById('nav-logo');
     
     window.addEventListener('scroll', () => {
@@ -26,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Intersection Observer for Scroll Animations
+    // 4. Intersection Observer for Scroll Animations
     const revealObserverOptions = {
         root: null, 
         rootMargin: '0px',

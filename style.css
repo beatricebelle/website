@@ -49,7 +49,7 @@ header {
     letter-spacing: 2px;
     transition: color 0.3s ease, opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
     opacity: 0;
-    visibility: hidden;
+    visibility: hidden; 
     transform: translateY(-10px);
 }
 
@@ -61,6 +61,22 @@ header {
 
 .logo:hover {
     color: var(--accent-color);
+}
+
+/* Hamburger Menu Icon (Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease;
+    background-color: var(--text-color);
 }
 
 nav {
@@ -100,22 +116,12 @@ nav a:hover {
     position: relative;
 }
 
-/* Updated Background Image Paths */
-.section-home {
-    background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/blue_harness_front.jpg");
-}
+/* Image Assignments */
+.section-home { background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/blue_harness_front.jpg"); }
+.section-about { background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/yellow_shoe_side.jpg"); }
+.section-portfolio { background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/blue_shoe_side.jpg"); }
 
-.section-about {
-    background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/yellow_shoe_side.jpg");
-}
-
-.section-portfolio {
-    background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/blue_shoe_side.jpg");
-}
-
-.section-contact{
-    background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/smart.jpg");
-}
+.section-contact { background-image: linear-gradient(var(--overlay), var(--overlay)), url("img/smart.jpg"); }
 
 /* Hero Content for Home Section */
 .hero-content {
@@ -141,7 +147,7 @@ nav a:hover {
 .content-box {
     background: rgba(10, 10, 10, 0.7);
     padding: 3rem;
-    border-radius: 10px;
+    border-radius: 10px; /* Updated to 10px */
     max-width: 1000px;
     width: 100%;
     backdrop-filter: blur(8px);
@@ -171,8 +177,8 @@ h2 {
 .portfolio-item {
     border: 1px solid #444;
     background: rgba(0,0,0,0.5);
-    border-radius: 10px;
     padding: 2.5rem 1.5rem;
+    border-radius: 10px; /* Added 10px border-radius */
     text-align: center;
     transition: border-color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
@@ -205,10 +211,55 @@ h2 {
 @media (max-width: 768px) {
     header {
         padding: 1rem 5%;
+        flex-wrap: nowrap; 
     }
     
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(5, 5, 5, 0.98);
+        padding: 2rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+    }
+
+    nav.nav-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    nav a {
+        font-size: 1.1rem;
+    }
+
+    /* Hamburger Animation Classes */
+    .menu-toggle.toggle-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.toggle-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.toggle-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    
     .hero-title {
+        font-size: 1.5rem; 
         letter-spacing: 4px;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
     }
     
     .content-box {
